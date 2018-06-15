@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <style>
+            body{
+                background-image: url("background.png");
+                background-color:azure;
+            }
+
+            .field { border-spacing: 0; border-collapse: collapse; }
+            .field th { padding: .5em; text-align: center}
+            .field td { border: 1px solid white; width: 4em; height: 4em; }
+            .field .board { background-color: rgba(47,79,79, .5);}
+        </style>
+    </head>
+    <body>
+        <div class="row" class="toprow" style="background-color: white">
+            <div class="col-sm-4" id="logo" class="container-fluid" style="display:flex; margin-top: 10px">            
+                <a href="/home"> <img src = "logo.png" alt="ship" style="width:80px; height:60px"></a>
+                &nbsp&nbsp<h1>Battleship</h1>
+            </div>
+            
+            <div class="col-sm-8">
+                <form id="signin" class="navbar-form navbar-right" role="form">
+                    <div class="input-group"  style="display:flex; line-height:2; margin-top:25px">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user" style:"margin-right: 10px"></i></span>
+                        <input id="email" type="email" class="form-control" name="email" value="" placeholder="Email Address">                                        
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock" style:"margin-right: 10px"></i></span>
+                        <input id="password" type="password" class="form-control" name="password" value="" placeholder="Password">                                        
+                        <input type="submit" class="btn btn-primary" value="Login">
+                        &nbsp&nbsp<b>or</b> &nbsp&nbsp
+                        <input type="submit" class="btn btn-primary" value="Register" style="background-color:yellowgreen">
+                    </div>        
+                </form>
+            </div>
+        </div>
+        <p></p>
+        <%-include partials/_table.ejs %>
+        
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-8">
+               
+            </div>
+            <div class="col-sm-4"></div>
+
+
+
+    </body>
+</html>

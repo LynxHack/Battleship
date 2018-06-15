@@ -1,0 +1,20 @@
+
+<table class="field">
+    <tbody>
+        <tr>
+            <th></th>
+            <% let alphabet='abcdefghijklmnopqrstuvwxyz'%>
+            <% for(let j = 0; j < 10; j ++) { %>
+                <th><%=alphabet[j]%></th>
+            <% } %>
+        </tr>
+        <% for(let k = 1; k <= 10; k ++) { %>
+            <tr>
+            <th><%=k%></th>
+            <% for(let i = 0; i < 10; i++) { %>
+                <td class="board" id="<%=alphabet[k-1]%><%=i+1%>"></td>
+            <% } %>
+            </tr>
+        <% } %>
+    </tbody>
+</table>
