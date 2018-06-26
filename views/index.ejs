@@ -4,26 +4,59 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>Document</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+        <link rel="stylesheet" href="/styles/game.css" type="text/css" />
+        <link rel="stylesheet" href="/styles/inputs.css" type="text/css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <style>
-            body{
-                background-image: url("background.png");
-                background-color:azure;
-            }
-
-            .field { border-spacing: 0; border-collapse: collapse; }
-            .field th { padding: .5em; text-align: center}
-            .field td { border: 1px solid white; width: 4em; height: 4em; }
-            .field .board { background-color: rgba(47,79,79, .5);}
-        </style>
+        <script src="/scripts/game.js" type="text/javascript"></script>
     </head>
     <body>
+        
+    <div class="row">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Battleship.io</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">Play against AI</a></li>
+                <li><a href="#">About</a></li>
+                <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><label class="switch">
+                        <input type="checkbox">
+                        <div class="switch-btn"></div>
+                        </label>
+                    </li>                              
+                </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li></li>
+                <li><i id="settings" style="font-size:24px" class="fa">&#xf013;</i></li>
+                <li class="active"><a href="./">Default <span class="sr-only">(current)</span></a></li>
+                <li><a href="../navbar-static-top/">Static top</a></li>
+                <li><a href="../navbar-fixed-top/">Fixed top</a></li>
+            </ul>
+        </nav>
+        </div>
         <div class="row" class="toprow" style="background-color: white">
             <div class="col-sm-4" id="logo" class="container-fluid" style="display:flex; margin-top: 10px">            
-                <a href="/home"> <img src = "logo.png" alt="ship" style="width:80px; height:60px"></a>
+                <a href="/home"> <img src = "logo.png" alt="ship" style="width:80px; height:60px;"></a>
                 &nbsp&nbsp<h1>Battleship</h1>
             </div>
             
@@ -41,17 +74,42 @@
                 </form>
             </div>
         </div>
-        <p></p>
-        <%-include partials/_table.ejs %>
         
-        <div class="row">
-            <div class="col-sm-4"></div>
-            <div class="col-sm-8">
-               
+        <p></p>
+        <div class="row" id="game" style="margin-left: 5px">
+                <div class="col-sm-8" id="logo" class="container-fluid" style="display:flex; margin-top: 10px">
+
+            <span id="table1">
+                <%-include partials/_table.ejs %>
+                <input id="playbutton" type="submit" class="btn btn-primary" value="Play !">
+                <i id="connectinggear" class="fa fa-gear fa-spin" style="font-size:24px;"></i>
+            </span>
             </div>
-            <div class="col-sm-4"></div>
-
-
-
+            <div class="col-sm-4" id="logo" class="container-fluid" style="display:flex; margin-top: 10px">
+                <!--<textarea id="history-box" rows="4" cols="50" readonly>
+                </textarea> -->
+                <table class="movetable">
+                    <tr>
+                        <th>#</th>
+                        <th>Move</th>
+                        <th>Result</th>
+                    </tr>
+                    <tr>
+                        <th>1</th>
+                        <td>a3</td>
+                        <td>HIT!</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
     </body>
 </html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var socket = io();
+    socket.emit('new player');
+    setInterval(function() {
+        socket.emit('movement', {test: "Testing newplayer send from client"});
+    }, 1000 / 60);
+</script>;

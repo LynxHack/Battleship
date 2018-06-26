@@ -1,0 +1,54 @@
+.field { border-spacing: 0; border-collapse: collapse; z-index: 0}
+.field th { padding: .5em; text-align: center}
+.field td { border: 1px solid #ddd; width: 4em; height: 4em; }
+.field .board { background-color: rgba(47,79,79, .5); }
+.field td:hover{
+    background-color: white;
+}
+
+
+.movetable { border-spacing: 0; border-collapse: collapse; z-index: 0; background-color:floralwhite; border-radius: 10px}
+.movetable th { padding: .5em; text-align: center; border: 1px solid #ddd;}
+.movetable td { border: 1px solid #ddd; width: 4em; height: 4em; text-align:center}
+.movetable tr:nth-child(even){background-color: #f2f2f2}
+#game {
+    position:relative;
+}
+
+#connectinggear {
+    z-index: 1000;
+    position:absolute;
+    top: 300px;
+    left: 255px;
+    margin: auto auto;
+    filter:alpha(opacity=0);
+    display:none;
+}
+
+#playbutton {
+    z-index: 1000;
+    opacity: 1.0;
+    position:relative;
+    height: 80px;
+    width: 160px;
+    top: 275px;
+    left: 240px;
+    margin: auto auto;
+}
+
+#history-box{
+    position: absolute;
+    top: 30px;
+    left: 20px;
+    height: 565px;
+    width: 400px;
+    background-color: white;
+    border-color: black;
+    border-width: 1px;
+}
+
+.ships-container{
+    height: 50em;
+    width: 50em;
+    background-color: white;
+}
