@@ -24,25 +24,6 @@ app.listen(PORT, () => {
     console.log(`Listening on port ${PORT} ...`);
 });*/
 
-server.listen(PORT, function(){
-    console.log(`Starting server on port ${PORT}`);
-});
-
-
-var players = {state: "teststate"};
-io.on('connection', function(socket) {
-  socket.on('new player', function() {
-    console.log("received new player");
-  });
-  socket.on('movement', function(data) {
-    console.log(data);
-    //console.log("received movement");
-  });
-});
-
-setInterval(function() {
-  io.sockets.emit('state', players);
-}, 1000 / 60);
 
 //To be used
 //var mysql = require('mysql');
@@ -97,3 +78,42 @@ app.get("/home", (req, res) => {
     res.render("index");
 });
 
+
+///////////////////////////
+//////Client socket////////
+///////////////////////////
+
+
+server.listen(PORT, function(){
+    console.log(`Starting server on port ${PORT}`);
+});
+
+var numusers = 0;
+var clients = [];
+io.on('connection', function(socket) {
+  numusers++;
+  clients.push(socket.id);
+  console.log('A client connected. Socket id: ' + socket.id);
+  console.log('Currently there are ' + numusers +  ' online');
+  socket.on('new player', function(data) {
+    console.log("received new player");
+  });
+
+  socket.on('playerclicked', function(data){
+    console.log(data);
+    console.log(clients);
+
+    ///Broadcast back out to a list of clients connected to same gameroom
+    for(let i = 0; i < clients.length; i++){
+        io.sockets.connected[clients[i]].emit('playerclicked', data);
+    }
+  });
+
+  socket.on('disconnect', function(){
+    numusers--;
+    console.log("clienet disconnected");
+    console.log('Currently there are ' + numusers + ' online');
+    //clients.indexOf(socket.id)
+
+  });
+});

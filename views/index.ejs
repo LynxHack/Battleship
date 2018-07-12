@@ -54,6 +54,8 @@
             </ul>
         </nav>
         </div>
+
+    
         <div class="row" class="toprow" style="background-color: white">
             <div class="col-sm-4" id="logo" class="container-fluid" style="display:flex; margin-top: 10px">            
                 <a href="/home"> <img src = "logo.png" alt="ship" style="width:80px; height:60px;"></a>
@@ -76,18 +78,13 @@
         </div>
         
         <p></p>
-        <div class="row" id="game" style="margin-left: 5px">
-                <div class="col-sm-8" id="logo" class="container-fluid" style="display:flex; margin-top: 10px">
-
-            <span id="table1">
+        <div  id="game">
+            <span id="table">
                 <%-include partials/_table.ejs %>
-                <input id="playbutton" type="submit" class="btn btn-primary" value="Play !">
-                <i id="connectinggear" class="fa fa-gear fa-spin" style="font-size:24px;"></i>
+                <%-include partials/_queue.ejs %>
             </span>
-            </div>
-            <div class="col-sm-4" id="logo" class="container-fluid" style="display:flex; margin-top: 10px">
-                <!--<textarea id="history-box" rows="4" cols="50" readonly>
-                </textarea> -->
+            <div style="margin-top: 10px">
+                <div>
                 <table class="movetable">
                     <tr>
                         <th>#</th>
@@ -100,16 +97,11 @@
                         <td>HIT!</td>
                     </tr>
                 </table>
+                </div>
+                <%-include partials/_ships.ejs %>
             </div>
         </div>
     </body>
 </html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
-<script>
-    var socket = io();
-    socket.emit('new player');
-    setInterval(function() {
-        socket.emit('movement', {test: "Testing newplayer send from client"});
-    }, 1000 / 60);
-</script>;

@@ -1,6 +1,6 @@
 .field { border-spacing: 0; border-collapse: collapse; z-index: 0}
 .field th { padding: .5em; text-align: center}
-.field td { border: 1px solid #ddd; width: 4em; height: 4em; }
+.field td { border: 1px solid #ddd; width: 10%; padding-top: 10% }
 .field .board { background-color: rgba(47,79,79, .5); }
 .field td:hover{
     background-color: white;
@@ -13,6 +13,8 @@
 .movetable tr:nth-child(even){background-color: #f2f2f2}
 #game {
     position:relative;
+    margin-left: 5px;
+    width: 60%;
 }
 
 #connectinggear {
@@ -48,6 +50,7 @@
 }
 
 .ships-container{
+    margin-top: 15px;
     height: 50em;
     width: 50em;
     background-color: white;
